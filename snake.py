@@ -131,7 +131,7 @@ while not death:
     screen.fill(WHITE)
     fruit.draw()
     snake.draw()
-    # Actualizasddiigr
+    # Actualiza los fps
     pygame.display.update()
     # Mantiene los fps en 60
     clock.tick(60)
