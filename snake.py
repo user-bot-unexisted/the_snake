@@ -2,7 +2,7 @@
 from pyclbr import Class
 from numpy import full
 import pygame,sys,random
-from pygame.math import Vector2 as vector2  # type: ignore[attr-defined]
+from pygame.math import Vector2 as vector2  
 
 FRUIT_COLOR = (126, 166, 114)
 FRUIT_SIZE = 20
@@ -11,14 +11,12 @@ cell_size = 800
 cell_number = 600
 class Fruits():
     def __init__(self) -> None:
-        # start at a random grid-aligned position
         self.position = vector2(0, 0)
         self.randomize([])
     def appears(self):
         rect = pygame.Rect(int(self.position.x), int(self.position.y), FRUIT_SIZE, FRUIT_SIZE)
         pygame.draw.rect(screen,FRUIT_COLOR,rect)
     def randomize(self, occupied_positions):
-        # choose a random grid cell not occupied by the snake
         while True:
             x = random.randrange(0, cell_size, FRUIT_SIZE)
             y = random.randrange(0, cell_number, FRUIT_SIZE)
@@ -53,12 +51,10 @@ class Snake():
             self.new_block = False
         else:
             self.body = [new_head] + self.body[:-1]
-    #ahora que trague la perr
-    def collition(self):
-        pass
 
 
-pygame.init()  # type: ignore[attr-defined]
+
+pygame.init()  
 
 
 WHITE = (255, 255, 255)
@@ -81,25 +77,25 @@ death = False
 fruit = Fruits()
 snake = Snake()
 
-scree_update = pygame.USEREVENT  # type: ignore[attr-defined]
+scree_update = pygame.USEREVENT 
 pygame.time.set_timer(scree_update,150)
 while not death:
     #mantiene la pantalla activa
     for event in pygame.event.get():
 #si no se quiere seguir se puede cerrar
-        if event.type == pygame.QUIT:  # type: ignore[attr-defined]
-            pygame.quit()  # type: ignore[attr-defined]
+        if event.type == pygame.QUIT:  
+            pygame.quit()  
             sys.exit()
         if event.type == scree_update:
             snake.movement()
-        if event.type == pygame.KEYDOWN:  # type: ignore[attr-defined]
-            if event.key == pygame.K_UP and snake.direction.y != 1:  # type: ignore[attr-defined]
+        if event.type == pygame.KEYDOWN:  
+            if event.key == pygame.K_UP and snake.direction.y != 1:  
                 snake.direction = vector2(0,-1)
-            elif event.key == pygame.K_DOWN and snake.direction.y != -1:  # type: ignore[attr-defined]
+            elif event.key == pygame.K_DOWN and snake.direction.y != -1:  
                 snake.direction = vector2(0,1)
-            elif event.key == pygame.K_LEFT and snake.direction.x != 1:  # type: ignore[attr-defined]
+            elif event.key == pygame.K_LEFT and snake.direction.x != 1:  
                 snake.direction = vector2(-1,0)
-            elif event.key == pygame.K_RIGHT and snake.direction.x != -1:  # type: ignore[attr-defined]
+            elif event.key == pygame.K_RIGHT and snake.direction.x != -1:  
                 snake.direction = vector2(1,0)
     #hacems que no se vaya verguiado volao sino que se vaya lento
 
