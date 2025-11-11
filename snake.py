@@ -1,10 +1,18 @@
-import pygame
-
-import sys 
+import pygame,sys
+from random import randint as randoms
+from fruit import Fruits as points 
 
 pygame.init()
 
-screen = pygame.display.set_mode((800,600))
+
+x = 800 
+y = 600
+class Fruits():
+    def __init__(self) -> None:
+        self.x = random(x,y)
+        self.y = random(x,y)
+
+screen = pygame.display.set_mode((x,y))
 
 clock = pygame.time.Clock()
 #si la serpiente no choca no mere y si no muere el juego sigue
@@ -24,3 +32,4 @@ while not death:
     screen.fill('white')
 #mantiene los fps en 60
     clock.tick(60)
+    
